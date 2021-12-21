@@ -49,8 +49,18 @@ suite('Functional Tests', function () {
     });
     // #4
     test('Send {surname: "da Verrazzano"}', function (done) {
-      assert.fail();
-
+      chai
+        .request(server)
+        .put('/travellers')
+        .send({
+          surname: 'da Verrazzano'
+        })
+        .end((err, res) => {
+          assert.equal(res.status, 200, 'server response should be 200 OK');
+          assert.equal(res.type, 'application/json', 'response document should be JSON')
+          assert.equal(res.body.name, 'Giovanni', 'name should be Giovanni')
+          assert.equal(res.body.surname, 'da Verrazzano', 'surname shound be the same with what we sent')
+        })
       done();
     });
   });
