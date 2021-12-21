@@ -26,7 +26,7 @@ suite('Functional Tests', function () {
         .request(server)
         .get('/hello?name=xy_z')
         .end(function (err, res) {
-          assert.euqal(res.status, 200);
+          assert.equal(res.status, 200);
           assert.equal(res.text, 'hello xy_z');
           done();
         });
