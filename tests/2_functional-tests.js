@@ -5,7 +5,7 @@ const server = require('../server');
 
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
-const {suiteSetup} = require('mocha')
+const { suiteSetup } = require('mocha')
 
 
 suite('Functional Tests', function () {
@@ -71,18 +71,19 @@ suite('Functional Tests', function () {
 
 const Browser = require('zombie');
 
-Browser.site = 'https://boilerplate-mochachai.ballista01.repl.co';
+// Browser.site = 'https://boilerplate-mochachai.ballista01.repl.co';
+Browser.site = 'localhost:3000'
 
 suite('Functional Tests with Zombie.js', function () {
   this.timeout(5000);
 
   const browser = new Browser();
-  suiteSetup(function(done) {
+  suiteSetup(function (done) {
     return browser.visit('/', done);
   });
 
   suite('Headless browser', function () {
-    test('should have a working "site" property', function() {
+    test('should have a working "site" property', function () {
       assert.isNotNull(browser.site);
     });
   });
